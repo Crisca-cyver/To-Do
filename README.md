@@ -20,7 +20,7 @@ Antes de comenzar, asegúrate de tener instalado:
 
 1. Clona el repositorio:
 ```bash
-git clone <url-del-repositorio>
+git clone git@github.com:Crisca-cyver/To-Do.git
 cd To-Do
 ```
 
