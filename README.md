@@ -49,4 +49,4 @@ Este proyecto fue creado con las siguientes herramientas:
 
 ## Colaboradores
 
-- Kevin Revero
+- Kevin Rivero
