@@ -12,7 +12,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, onEdit })
   const style = CATEGORY_STYLES[task.category];
 
   return (
-    <div className="flex items-start gap-4 bg-transparent px-4 py-3 min-h-14 justify-between group animate-in fade-in slide-in-from-bottom-2 duration-300">
+    <div className="flex items-start gap-4 bg-transparent px-4 py-3 min-h-14 justify-between group animate-slide-up">
       <div className="flex items-center gap-4 flex-1 min-w-0 pt-0.5">
         <div className="flex size-7 items-center justify-center shrink-0">
           <input
@@ -38,17 +38,17 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, onEdit })
         </div>
       </div>
       <div className="shrink-0 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity pt-1">
-        <button 
-            onClick={() => onEdit(task.id)}
-            className="text-slate-400 hover:text-primary flex size-7 items-center justify-center transition-colors rounded hover:bg-slate-800"
-            aria-label="Edit task"
+        <button
+          onClick={() => onEdit(task.id)}
+          className="text-slate-400 hover:text-primary flex size-7 items-center justify-center transition-colors rounded hover:bg-slate-800"
+          aria-label="Edit task"
         >
           <span className="material-symbols-outlined text-[20px]">edit</span>
         </button>
-        <button 
-            onClick={() => onDelete(task.id)}
-            className="text-slate-400 hover:text-red-500 flex size-7 items-center justify-center transition-colors rounded hover:bg-slate-800"
-            aria-label="Delete task"
+        <button
+          onClick={() => onDelete(task.id)}
+          className="text-slate-400 hover:text-red-500 flex size-7 items-center justify-center transition-colors rounded hover:bg-slate-800"
+          aria-label="Delete task"
         >
           <span className="material-symbols-outlined text-[20px]">delete</span>
         </button>

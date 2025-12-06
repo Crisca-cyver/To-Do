@@ -31,7 +31,7 @@ npm install
 
 3. Inicia el servidor de desarrollo:
 ```bash
-npm start
+npm run dev
 ```
 
 ### Funcionalidades

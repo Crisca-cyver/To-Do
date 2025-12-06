@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+/* Light theme overrides */
+.light {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 250 252 / var(--tw-bg-opacity));
+}
+
+.light .bg-background-dark {
+  background-color: rgb(248 250 252);
+}
+
+.light .text-slate-300 {
+  color: rgb(51 65 85);
+}
+
+.light .border-slate-700 {
+  border-color: rgb(203 213 225);
+}
+
+.light .bg-slate-900 {
+  background-color: rgb(255 255 255);
+}
+
+.light .bg-slate-800 {
+  background-color: rgb(241 245 249);
+}
