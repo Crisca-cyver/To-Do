@@ -134,7 +134,7 @@ export default function App() {
             {/* Header */}
             <div className="flex flex-wrap justify-between items-center gap-3 p-4">
               <div className="flex min-w-72 flex-col gap-3">
-                <p className="text-white dark:text-white light:text-slate-900 text-4xl font-black leading-tight tracking-[-0.033em]">
+                <p className="text-black dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">
                   Mi Lista de Tareas
                 </p>
               </div>
@@ -265,8 +265,8 @@ export default function App() {
                     <button
                       onClick={() => setFilterCategory('All')}
                       className={`flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-medium transition-colors ${filterCategory === 'All'
-                          ? 'border-slate-500 bg-slate-700 text-white'
-                          : 'border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700'
+                        ? 'border-slate-500 bg-slate-700 text-white'
+                        : 'border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700'
                         }`}
                     >
                       <span>Todas</span>
@@ -279,8 +279,8 @@ export default function App() {
                           key={cat}
                           onClick={() => setFilterCategory(cat)}
                           className={`flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-medium transition-colors ${isSelected
-                              ? 'bg-slate-700 border-slate-500 text-white ring-1 ring-slate-500'
-                              : 'border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700'
+                            ? 'bg-slate-700 border-slate-500 text-white ring-1 ring-slate-500'
+                            : 'border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700'
                             }`}
                         >
                           <span>{cat}</span>
@@ -297,8 +297,8 @@ export default function App() {
                       <label
                         key={status}
                         className={`flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-[7px] px-2 text-sm font-medium leading-normal transition-all duration-200 ${filterStatus === status
-                            ? 'bg-slate-700 shadow-sm text-white'
-                            : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800 dark:hover:bg-slate-800 light:hover:bg-slate-200'
+                          ? 'bg-slate-700 shadow-sm text-white'
+                          : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800 dark:hover:bg-slate-800 light:hover:bg-slate-200'
                           }`}
                       >
                         <span className="truncate">{status}</span>

@@ -7,91 +7,92 @@ import { useTasks } from '../../contexts/TaskContext';
 import { Task } from '../../types';
 
 const locales = {
-    'es': es,
+  'es': es,
 };
 
 const localizer = dateFnsLocalizer({
-    format,
-    parse,
-    startOfWeek,
-    getDay,
-    locales,
+  format,
+  parse,
+  startOfWeek,
+  getDay,
+  locales,
 });
 
 const CalendarView: React.FC = () => {
-    const { tasks } = useTasks();
+  const { tasks } = useTasks();
 
-    // Convert tasks to calendar events
-    const events = useMemo(() => {
-        return tasks
-            .filter(task => task.dueDate)
-            .map(task => ({
-                id: task.id,
-                title: task.text,
-                start: typeof task.dueDate === 'string' ? new Date(task.dueDate) : task.dueDate,
-                end: typeof task.dueDate === 'string' ? new Date(task.dueDate) : task.dueDate,
-                resource: task,
-            }));
-    }, [tasks]);
+  // Convert tasks to calendar events
+  const events = useMemo(() => {
+    return tasks
+      .filter(task => task.dueDate)
+      .map(task => ({
+        id: task.id,
+        title: task.text,
+        start: typeof task.dueDate === 'string' ? new Date(task.dueDate) : task.dueDate,
+        end: typeof task.dueDate === 'string' ? new Date(task.dueDate) : task.dueDate,
+        resource: task,
+      }));
+  }, [tasks]);
 
-    const eventStyleGetter = (event: any) => {
-        const task: Task = event.resource;
-        let backgroundColor = '#3b82f6';
+  const eventStyleGetter = (event: any) => {
+    const task: Task = event.resource;
+    let backgroundColor = '#3b82f6';
 
-        if (task.completed) {
-            backgroundColor = '#10b981';
-        } else if (task.priority === 'Alta') {
-            backgroundColor = '#ef4444';
-        } else if (task.priority === 'Media') {
-            backgroundColor = '#f59e0b';
-        }
+    if (task.completed) {
+      backgroundColor = '#10b981';
+    } else if (task.priority === 'Alta') {
+      backgroundColor = '#ef4444';
+    } else if (task.priority === 'Media') {
+      backgroundColor = '#f59e0b';
+    }
 
-        return {
-            style: {
-                backgroundColor,
-                borderRadius: '5px',
-                opacity: task.completed ? 0.6 : 1,
-                color: 'white',
-                border: '0px',
-                display: 'block',
-            },
-        };
+    return {
+      style: {
+        backgroundColor,
+        borderRadius: '5px',
+        opacity: task.completed ? 0.6 : 1,
+        color: 'white',
+        border: '0px',
+        display: 'block',
+      },
     };
+  };
 
-    return (
-        <div className="p-4 h-[calc(100vh-200px)]">
-            <div className="bg-slate-900 dark:bg-slate-900 light:bg-white border border-slate-800 dark:border-slate-800 light:border-slate-200 rounded-lg p-6 h-full">
-                <h2 className="text-2xl font-bold text-white dark:text-white light:text-slate-900 mb-4">
-                    📅 Vista de Calendario
-                </h2>
-                <div className="calendar-container h-[calc(100%-60px)]">
-                    <Calendar
-                        localizer={localizer}
-                        events={events}
-                        startAccessor="start"
-                        endAccessor="end"
-                        style={{ height: '100%' }}
-                        eventPropGetter={eventStyleGetter}
-                        culture="es"
-                        messages={{
-                            next: 'Siguiente',
-                            previous: 'Anterior',
-                            today: 'Hoy',
-                            month: 'Mes',
-                            week: 'Semana',
-                            day: 'Día',
-                            agenda: 'Agenda',
-                            date: 'Fecha',
-                            time: 'Hora',
-                            event: 'Evento',
-                            noEventsInRange: 'No hay tareas en este rango',
-                            showMore: (total) => `+ Ver más (${total})`,
-                        }}
-                    />
-                </div>
-            </div>
+  return (
+    <div className="p-4 h-[calc(100vh-200px)]">
+      <div className="bg-slate-900 dark:bg-slate-900 light:bg-white border border-slate-800 dark:border-slate-800 light:border-slate-200 rounded-lg p-6 h-full">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+          📅 Vista de Calendario
+        </h2>
+        <div className="calendar-container h-[calc(100%-60px)]">
+          <Calendar
+            localizer={localizer}
+            events={events}
+            startAccessor="start"
+            endAccessor="end"
+            style={{ height: '100%' }}
+            eventPropGetter={eventStyleGetter}
+            culture="es"
+            messages={{
+              next: 'Siguiente',
+              previous: 'Anterior',
+              today: 'Hoy',
+              month: 'Mes',
+              week: 'Semana',
+              day: 'Día',
+              agenda: 'Agenda',
+              date: 'Fecha',
+              time: 'Hora',
+              event: 'Evento',
+              noEventsInRange: 'No hay tareas en este rango',
+              showMore: (total) => `+ Ver más (${total})`,
+            }}
+          />
+        </div>
+      </div>
 
-            <style>{`
+      <style>{`
+        /* Dark mode (default) styles */
         .calendar-container .rbc-calendar {
           color: #e2e8f0;
         }
@@ -120,6 +121,25 @@ const CalendarView: React.FC = () => {
         .calendar-container .rbc-button-link {
           color: #e2e8f0;
         }
+        .calendar-container .rbc-toolbar {
+          flex-wrap: wrap;
+          gap: 10px;
+          margin-bottom: 20px;
+        }
+        .calendar-container .rbc-toolbar-label {
+          color: #e2e8f0;
+          font-size: 1.25rem;
+          font-weight: bold;
+          width: 100%;
+          order: -1;
+          text-align: center;
+        }
+        @media (min-width: 640px) {
+          .calendar-container .rbc-toolbar-label {
+            width: auto;
+            order: 0;
+          }
+        }
         .calendar-container .rbc-toolbar button {
           color: #e2e8f0;
           border-color: #334155;
@@ -131,6 +151,7 @@ const CalendarView: React.FC = () => {
         .calendar-container .rbc-toolbar button.rbc-active {
           background-color: #3b82f6;
           border-color: #3b82f6;
+          color: white;
         }
         .calendar-container .rbc-event {
           padding: 2px 5px;
@@ -139,9 +160,54 @@ const CalendarView: React.FC = () => {
         .calendar-container .rbc-event-label {
           font-size: 11px;
         }
+
+        /* Light mode overrides */
+        .light .calendar-container .rbc-calendar {
+          color: #0f172a;
+        }
+        .light .calendar-container .rbc-header {
+          background-color: #f1f5f9;
+          color: #0f172a;
+          border-color: #cbd5e1;
+        }
+        .light .calendar-container .rbc-today {
+          background-color: #3b82f620;
+        }
+        .light .calendar-container .rbc-off-range-bg {
+          background-color: #f8fafc;
+        }
+        .light .calendar-container .rbc-month-view {
+          background-color: #ffffff;
+          border-color: #cbd5e1;
+        }
+        .light .calendar-container .rbc-day-bg {
+          border-color: #cbd5e1;
+        }
+        .light .calendar-container .rbc-date-cell {
+          color: #475569;
+        }
+        .light .calendar-container .rbc-button-link {
+          color: #0f172a;
+        }
+        .light .calendar-container .rbc-toolbar-label {
+          color: #0f172a;
+        }
+        .light .calendar-container .rbc-toolbar button {
+          color: #0f172a;
+          border-color: #cbd5e1;
+          background-color: #ffffff;
+        }
+        .light .calendar-container .rbc-toolbar button:hover {
+          background-color: #f1f5f9;
+        }
+        .light .calendar-container .rbc-toolbar button.rbc-active {
+          background-color: #3b82f6;
+          border-color: #3b82f6;
+          color: white;
+        }
       `}</style>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default CalendarView;
